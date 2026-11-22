@@ -111,5 +111,7 @@ public class PerfTweaks {
         if(!LauncherPreferences.PREF_PERF_TWEAKS) return;
         // Half of the heap as young generation: minor GCs become rare
         args.add(0, "-XX:NewRatio=1");
+        // Skip bytecode verification of loaded classes: shorter loading, no effect on FPS
+        if(LauncherPreferences.PREF_PERF_FAST_LOAD) args.add(0, "-XX:-BytecodeVerificationRemote");
     }
 }

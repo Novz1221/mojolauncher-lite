@@ -66,6 +66,7 @@ public class LauncherPreferences {
     public static boolean PREF_BIG_CORE_AFFINITY = false;
     public static boolean PREF_PERF_TWEAKS = true;
     public static boolean PREF_PERF_HIGH_FPS = true;
+    public static boolean PREF_PERF_FAST_LOAD = true;
     public static boolean PREF_ZINK_PREFER_SYSTEM_DRIVER = false;
     public static boolean PREF_VERIFY_MANIFEST = true;
     public static String PREF_DOWNLOAD_SOURCE = "default";
@@ -91,6 +92,7 @@ public class LauncherPreferences {
         PREF_RENDERER = DEFAULT_PREF.getString("renderer", "opengles2");
         PREF_PERF_TWEAKS = DEFAULT_PREF.getBoolean("perfTweaks", true);
         PREF_PERF_HIGH_FPS = DEFAULT_PREF.getBoolean("perfHighFps", true);
+        PREF_PERF_FAST_LOAD = DEFAULT_PREF.getBoolean("perfFastLoad", true);
         PREF_BUTTONSIZE = DEFAULT_PREF.getInt("buttonscale", 100);
         PREF_MOUSESCALE = DEFAULT_PREF.getInt("mousescale", 100)/100f;
         PREF_MOUSESPEED = ((float)DEFAULT_PREF.getInt("mousespeed",100))/100f;

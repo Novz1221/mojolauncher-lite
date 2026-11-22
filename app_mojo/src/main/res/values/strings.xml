@@ -575,4 +575,6 @@
     <string name="preference_perf_tweaks_description">Applies GPU-aware tweaks: faster renderer settings, lighter in-game options on first launch, bigger starting heap and big-core pinning.</string>
     <string name="preference_perf_high_fps_title">High FPS mode</string>
     <string name="preference_perf_high_fps_description">No FPS cap, lower resolution and shorter render distance on PowerVR. Turn off for steadier but lower FPS.</string>
+    <string name="preference_perf_fast_load_title">Fast load</string>
+    <string name="preference_perf_fast_load_description">Skips bytecode verification when loading classes. Shorter loading, no effect on FPS. Turn off if a mod crashes with an unclear error.</string>
 </resources>
