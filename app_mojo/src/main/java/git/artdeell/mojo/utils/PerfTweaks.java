@@ -112,6 +112,10 @@ public class PerfTweaks {
         // Half of the heap as young generation: minor GCs become rare
         args.add(0, "-XX:NewRatio=1");
         // Skip bytecode verification of loaded classes: shorter loading, no effect on FPS
-        if(LauncherPreferences.PREF_PERF_FAST_LOAD) args.add(0, "-XX:-BytecodeVerificationRemote");
+        if(LauncherPreferences.PREF_PERF_FAST_LOAD) {
+            args.add(0, "-XX:-BytecodeVerificationRemote");
+            // Must come before the diagnostic option, newer JVMs refuse to start otherwise
+            args.add(0, "-XX:+UnlockDiagnosticVMOptions");
+        }
     }
 }
