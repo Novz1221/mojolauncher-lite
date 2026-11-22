@@ -73,6 +73,7 @@ import git.artdeell.mojo.services.GameService;
 import git.artdeell.mojo.tasks.AsyncAssetManager;
 import git.artdeell.mojo.utils.JREUtils;
 import git.artdeell.mojo.utils.MCOptionUtils;
+import git.artdeell.mojo.utils.PerfTweaks;
 import git.artdeell.mojo.authenticator.accounts.Account;
 import git.artdeell.mojo.utils.jre.GameRunner;
 
@@ -132,6 +133,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
 
         AsyncAssetManager.extractDefaultSettings(this, instance.getGameDirectory());
         MCOptionUtils.load(instance.getGameDirectory().getAbsolutePath());
+        PerfTweaks.applyGameOptions(instance.getGameDirectory());
 
         Intent gameServiceIntent = new Intent(this, GameService.class);
         // Start the service a bit early
@@ -246,7 +248,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
 
             setIntent(activityIntent);
 
-            setTitle("MojoSuperLite Launcher (" + version + ")");
+            setTitle("MojoLauncher (" + version + ")");
 
             // Menu
             gameActionArrayAdapter = new ArrayAdapter<>(this,

@@ -211,5 +211,13 @@ public class GpuUtils {
         public boolean isArm() {
             return (renderer.contains("Mali") || renderer.contains("Immortalis")) && vendor.equals("ARM");
         }
+
+        /**
+         * Check if this GLInfo belongs to an Imagination PowerVR graphics adapter
+         * @return
+         */
+        public boolean isPowerVR() {
+            return renderer.contains("PowerVR") || vendor.contains("Imagination");
+        }
     }
 }

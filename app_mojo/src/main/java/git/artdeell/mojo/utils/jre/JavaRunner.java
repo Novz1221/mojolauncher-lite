@@ -17,6 +17,7 @@ import git.artdeell.mojo.awt.AWTView;
 import git.artdeell.mojo.multirt.MultiRTUtils;
 import git.artdeell.mojo.multirt.Runtime;
 import git.artdeell.mojo.prefs.LauncherPreferences;
+import git.artdeell.mojo.utils.PerfTweaks;
 import git.artdeell.mojo.utils.JREUtils;
 
 import java.io.File;
@@ -100,7 +101,7 @@ public class JavaRunner {
         userArguments.add(0, "-XX:-UsePerfData");
         userArguments.add(0, "-XX:+UseSerialGC");
         userArguments.add(0, "-XX:+IgnoreUnrecognizedVMOptions");
-        userArguments.add(0, "-Xms"+Math.min(128, LauncherPreferences.PREF_RAM_ALLOCATION)+"M");
+        userArguments.add(0, "-Xms"+PerfTweaks.initialHeapMb(LauncherPreferences.PREF_RAM_ALLOCATION)+"M");
         userArguments.add(0, "-Xmx"+LauncherPreferences.PREF_RAM_ALLOCATION+"M");
 
         ArrayList<String> overridableArguments = new ArrayList<>(Arrays.asList(
