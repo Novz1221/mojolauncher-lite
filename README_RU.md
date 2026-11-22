@@ -1,15 +1,15 @@
-<H1 align="center">MojoLauncher (также известный как MJLauncher)</H1>
+<H1 align="center">MojoSuperLite Launcher</H1>
 
 <a href="./README.md">Readme in English</a>
 
-<img src="./app_mojo/src/main/assets/mojo.png" align="left" width="150" height="150" alt="MojoLauncher logo">
+<img src="./app_mojo/src/main/assets/mojo.png" align="left" width="150" height="150" alt="MojoSuperLite Launcher logo">
 
 [![Android CI](https://github.com/MojoLauncher/MojoLauncher/workflows/Android%20CI/badge.svg)](https://github.com/MojoLauncher/MojoLauncher/actions)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/MojoLauncher/MojoLauncher)](https://github.com/MojoLauncher/MojoLauncher/actions)
 [![Discord](https://img.shields.io/discord/1365346109131722753.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/VHdwQFsaGX)
 [![Telegram](https://img.shields.io/badge/Telegram-MojoLauncher%20%D0%A1%D0%9D%D0%93-26A5E4?logo=telegram&logoColor=white)](https://t.me/mojolauncher_chat)
 
-* MojoLauncher это лаунчер, основанный на [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher), позволяющий играть в Minecraft: Java Edition на устройствах Android!
+* MojoSuperLite Launcher — это форк [MojoLauncher](https://github.com/MojoLauncher/MojoLauncher), основанный на [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher), позволяющий играть в Minecraft: Java Edition на устройствах Android!
 
 * Он может запускать почти любую версию Minecraft, позволяя устанваливать через .jar загрузчики модов такие как [Forge](https://files.minecraftforge.net/) и [Fabric](http://fabricmc.net/), и моды по типу [OptiFine](https://optifine.net).
 

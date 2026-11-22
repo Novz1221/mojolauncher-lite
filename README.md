@@ -1,48 +1,51 @@
-<H1 align="center">MojoLauncher (a.k.a. MJLauncher)</H1>
+<H1 align="center">MojoSuperLite Launcher</H1>
 
 <a href="./README_RU.md">Readme на русском</a>
 
-<img src="./app_mojo/src/main/assets/mojo.png" align="left" width="150" height="150" alt="MojoLauncher logo">
+<img src="./app_mojo/src/main/assets/mojo.png" align="left" width="150" height="150" alt="MojoSuperLite Launcher logo">
 
-[![Android CI](https://github.com/MojoLauncher/MojoLauncher/workflows/Android%20CI/badge.svg)](https://github.com/MojoLauncher/MojoLauncher/actions)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/MojoLauncher/MojoLauncher)](https://github.com/MojoLauncher/MojoLauncher/actions)
-[![Discord](https://img.shields.io/discord/1365346109131722753.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/VHdwQFsaGX)
+[
 
-* MojoLauncher is a launcher, based on [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher), that allows you to play Minecraft: Java Edition on your Android device!
+![Android CI](https://github.com/Novz1221/mojolauncher-lite/workflows/Android%20CI/badge.svg)
+
+](https://github.com/Novz1221/mojolauncher-lite/actions)
+
+* MojoSuperLite Launcher is a lightweight launcher for playing Minecraft: Java Edition on your Android device. It is a fork of [MojoLauncher](https://github.com/MojoLauncher/MojoLauncher), which itself is based on [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher).
 
 * It can run almost every version of Minecraft, allowing you to use .jar only installers to install modloaders such as [Forge](https://files.minecraftforge.net/) and [Fabric](http://fabricmc.net/) and mods like [OptiFine](https://optifine.net).
 
 ## Navigation
 - [Introduction](#introduction)
-- [Getting MojoLauncher](#getting-mojolauncher)
-- [Building](#building) 
-- [Current roadmap](#current-roadmap) 
-- [License](#license) 
-- [Contributing](#contributing) 
-- [Credits & Third party components and their licenses](#credits--third-party-components-and-their-licenses-if-available)
+- [What's different](#whats-different)
+- [Getting MojoSuperLite Launcher](#getting-mojosuperlite-launcher)
+- [Building](#building)
+- [Current roadmap](#current-roadmap)
+- [License](#license)
+- [Contributing](#contributing)
+- [Credits & Third party components and their licenses](#third-party-components-licenses-and-sources-when-applicable)
 
-## Introduction 
-* MojoLauncher is a Minecraft: Java Edition launcher for Android based on [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher)
-* This launcher can launch almost all available Minecraft versions ranging from rd-132211 to 26.x snapshots (including Combat Test versions). 
-* Modding via Forge and Fabric are also supported. 
+## Introduction
+* MojoSuperLite Launcher is a Minecraft: Java Edition launcher for Android, forked from [MojoLauncher](https://github.com/MojoLauncher/MojoLauncher) (a.k.a. MJLauncher) and based on [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher).
+* This launcher can launch almost all available Minecraft versions ranging from rd-132211 to 26.x snapshots (including Combat Test versions).
+* Modding via Forge and Fabric are also supported.
 
-## Getting MojoLauncher
+## What's different
+* Renamed to **MojoSuperLite Launcher**.
+* Fixed a crash when opening the settings screen caused by an empty `ic_px_arrow_left` vector drawable.
+* Added an "All files access" permission prompt (`MANAGE_EXTERNAL_STORAGE`) on Android 11 and newer, shown at startup.
 
-You can get MojoLauncher via four methods:
+> The application ID (`git.artdeell.mjlaunch`) and internal package names are unchanged, so existing data and builds stay compatible.
 
-1. You can get the prebuilt app from the [releases section](http://github.com/mojolauncher/mojolauncher/releases).
+## Getting MojoSuperLite Launcher
 
-2. You can get it from Google Play by clicking on this badge:
-[![Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=git.artdeell.mjlaunch)
+You can get MojoSuperLite Launcher via two methods:
 
-3. You can get early builds from [Github Actions](http://github.com/mojolauncher/mojolauncher/actions).
+1. You can get early builds from [GitHub Actions](https://github.com/Novz1221/mojolauncher-lite/actions).
 
-4. You can [build](#building) from source.
-## Building   
+2. You can [build](#building) from source.
+
+## Building
 * Build the launcher (it will automatically download all required components)
-```
-./gradlew :app_mojo:assembleDebug
-```
 If you are building on Windows:
 * Replace `./gradlew` with `.\gradlew.bat`
 * Make sure `mojoexec`, `sdl`, `glfw` are symlinked into `app_mojo/src/main/jni/`
@@ -62,10 +65,10 @@ If you are building on Windows:
 ## Known Issues
 - Some physical mice may have very slow mouse speed
 - On Holy GL4ES, large texture atlases may be distorted (resulting in stretched/blocky textures in modpacks)
-- Probably more, that's why we have a bug tracker ;) 
+- Probably more, that's why we have a bug tracker ;)
 
 ## License
-- MojoLauncher is licensed under [GNU LGPLv3](https://github.com/MojoLauncher/MojoLauncher/blob/v3_openjdk/LICENSE).
+- MojoSuperLite Launcher, like the upstream MojoLauncher, is licensed under [GNU LGPLv3](https://github.com/MojoLauncher/MojoLauncher/blob/v3_openjdk/LICENSE).
 
 ## Contributing
 Contributions are welcome! We appreciate any type of contribution, not only code. For example, you can help the wiki shape up. You can help the [translation](https://mojolauncher.ru/translate/translator.html) too!
@@ -74,6 +77,7 @@ Contributions are welcome! We appreciate any type of contribution, not only code
 Any code change to this repository should be submitted as a pull request. The description should explain what the code does and give steps to execute it.
 
 ## Third party components, licenses and sources (when applicable)
+- [MojoLauncher](https://github.com/MojoLauncher/MojoLauncher) (upstream of this fork): [GNU LGPLv3 License](https://github.com/MojoLauncher/MojoLauncher/blob/v3_openjdk/LICENSE)
 - [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher): [GNU LGPLv3 License](https://github.com/PojavLauncherTeam/PojavLauncher/blob/v3_openjdk/LICENSE)
 - Android Support Libraries: [Apache License 2.0](https://android.googlesource.com/platform/prebuilts/maven_repo/android/+/master/NOTICE.txt).
 - [Holy GL4ES](https://github.com/artdeell/gl4es_extra_extra/): [MIT License](https://github.com/ptitSeb/gl4es/blob/master/LICENSE).
