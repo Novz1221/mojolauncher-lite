@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class PerfTweaks {
     private static final String TAG = "PerfTweaks";
-    private static final String APPLIED_MARKER = ".mojo_perf_applied";
+    private static final String APPLIED_MARKER = ".mojo_perf_applied_v3";
 
     /** Environment for the OpenGL ES based renderers (GL4ES, OpenLTW) */
     public static void applyGlesEnv(Map<String, String> env) {
@@ -33,7 +33,7 @@ public class PerfTweaks {
 
     /** Maximum render/simulation distance (chunks) used when capping for the current GPU */
     private static int distanceCap(GpuUtils.GLInfo gpu) {
-        if(gpu.isPowerVR()) return 3;
+        if(gpu.isPowerVR()) return LauncherPreferences.PREF_PERF_HIGH_FPS ? 2 : 3;
         if(gpu.isArm()) return 6;
         return 8;
     }
@@ -58,8 +58,8 @@ public class PerfTweaks {
         GpuUtils.GLInfo gpu = GpuUtils.getGlInfo();
         Log.i(TAG, "Applying game options for GPU: " + gpu.renderer);
 
-        // Unlimited FPS and no vsync lock (260 means unlimited in Minecraft)
-        MCOptionUtils.set("maxFps", "260");
+                // 260 means unlimited in Minecraft; the 60 cap keeps frame times even
+        MCOptionUtils.set("maxFps", LauncherPreferences.PREF_PERF_HIGH_FPS ? "260" : "60");
         MCOptionUtils.set("enableVsync", "false");
         MCOptionUtils.set("fancyGraphics", "false");
         MCOptionUtils.set("graphicsMode", "0");
@@ -96,12 +96,20 @@ public class PerfTweaks {
     /** Lowest short side (px) the game surface is scaled down to on weak GPUs */
     public static int targetShortSide(GpuUtils.GLInfo gpu) {
         if(!LauncherPreferences.PREF_PERF_TWEAKS) return 540;
-        return gpu.isPowerVR() ? 432 : 540;
+        if(!gpu.isPowerVR()) return 540;
+        return LauncherPreferences.PREF_PERF_HIGH_FPS ? 360 : 432;
     }
 
-    /** Initial heap size (MB) for the JVM: bigger start means fewer heap-growth GC pauses */
+    /** Initial heap size (MB): same as the max so the heap never has to grow during play */
     public static int initialHeapMb(int maxHeapMb) {
         if(!LauncherPreferences.PREF_PERF_TWEAKS) return Math.min(128, maxHeapMb);
-        return Math.min(maxHeapMb, 384);
+        return maxHeapMb;
+    }
+
+    /** Extra JVM flags for steady frame times (fewer, shorter GC pauses) */
+    public static void addStableJvmArgs(java.util.List<String> args) {
+        if(!LauncherPreferences.PREF_PERF_TWEAKS) return;
+        // Half of the heap as young generation: minor GCs become rare
+        args.add(0, "-XX:NewRatio=1");
     }
 }
