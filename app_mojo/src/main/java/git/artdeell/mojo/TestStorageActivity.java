@@ -6,8 +6,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.ActivityNotFoundException;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,10 +26,17 @@ public class TestStorageActivity extends Activity {
     private AlertDialog mPermissionRequestDialog;
     private boolean mPermsRequired = false;
     private boolean mPermsDialogShown = false;
+    private boolean mAllFilesRequired = false;
+    private boolean mAllFilesDialogShown = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPermsDialogShown = false;
+        if(needsAllFilesAccess()) {
+            // Handled in onResume() so the user can come back from settings.
+            mAllFilesRequired = true;
+            return;
+        }
         if(Build.VERSION.SDK_INT >= 23 && Build.VERSION.SDK_INT < 29 && !isStorageAllowed(this)) {
             mPermsRequired = true;
         } else exit();
@@ -34,6 +45,10 @@ public class TestStorageActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        if(mAllFilesRequired) {
+            handleAllFilesResume();
+            return;
+        }
         if(!mPermsRequired) return;
         if(!mPermsDialogShown) requestStoragePermission();
         else showRerequestDialog();
@@ -43,6 +58,51 @@ public class TestStorageActivity extends Activity {
     protected void onPause() {
         super.onPause();
         if(mPermissionRequestDialog != null) mPermissionRequestDialog.dismiss();
+    }
+
+    private static boolean needsAllFilesAccess() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && !Environment.isExternalStorageManager();
+    }
+
+    private void handleAllFilesResume() {
+        if(!needsAllFilesAccess()) {
+            // Granted (possibly via settings), continue normally.
+            mAllFilesRequired = false;
+            exit();
+            return;
+        }
+        if(!mAllFilesDialogShown) {
+            mAllFilesDialogShown = true;
+            showAllFilesDialog();
+            return;
+        }
+        // Already prompted once this launch and user did not grant; continue without it.
+        mAllFilesRequired = false;
+        exit();
+    }
+
+    private void showAllFilesDialog() {
+        if(mPermissionRequestDialog != null) mPermissionRequestDialog.dismiss();
+        mPermissionRequestDialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.all_files_permission_title)
+                .setMessage(R.string.all_files_permission_message)
+                .setCancelable(false)
+                .setPositiveButton(R.string.all_files_permission_grant, (d, i) -> openAllFilesSettings())
+                .setNegativeButton(R.string.all_files_permission_later, (d, i) -> {
+                    mAllFilesRequired = false;
+                    exit();
+                })
+                .show();
+    }
+
+    private void openAllFilesSettings() {
+        Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
+                Uri.parse("package:" + getPackageName()));
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION));
+        }
     }
 
     private void showRerequestDialog() {
