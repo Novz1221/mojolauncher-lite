@@ -1,7 +1,5 @@
 <H1 align="center">MojoSuperLite Launcher</H1>
 
-<a href="./README_RU.md">Readme на русском</a>
-
 <img src="./app_mojo/src/main/assets/mojo.png" align="left" width="150" height="150" alt="MojoSuperLite Launcher logo">
 
 [
