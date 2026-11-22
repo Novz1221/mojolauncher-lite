@@ -32,7 +32,6 @@
                 android:id="@+id/news_button"
                 style="@style/LauncherMenuButton.Universal"
                 android:layout_width="0dp"
-                android:drawableStart="@drawable/ic_px_book"
                 android:text="@string/mcl_tab_wiki"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +48,6 @@
                 android:id="@+id/social_media_button"
                 style="@style/LauncherMenuButton.Universal"
                 android:layout_width="0dp"
-                android:drawableStart="@drawable/ic_social_media"
                 android:text="@string/mcl_button_social_media"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +57,6 @@
                 android:id="@+id/custom_control_button"
                 style="@style/LauncherMenuButton.Universal"
                 android:layout_width="match_parent"
-                android:drawableStart="@drawable/ic_px_gamepad"
                 android:text="@string/mcl_option_customcontrol"
                 app:layout_constraintTop_toBottomOf="@id/news_button"/>
 
@@ -67,7 +64,6 @@
                 android:id="@+id/install_jar_button"
                 style="@style/LauncherMenuButton.Universal"
                 android:layout_width="match_parent"
-                android:drawableStart="@drawable/ic_px_java_run"
                 android:text="@string/main_install_jar_file"
                 app:layout_constraintTop_toBottomOf="@id/custom_control_button"
                 tools:layout_editor_absoluteX="0dp" />
@@ -76,7 +72,6 @@
                 android:id="@+id/share_logs_button"
                 style="@style/LauncherMenuButton.Universal"
                 android:layout_width="match_parent"
-                android:drawableStart="@drawable/ic_px_sharelog"
                 android:text="@string/main_share_logs"
                 app:layout_constraintTop_toBottomOf="@id/install_jar_button" />
 
@@ -84,7 +79,6 @@
                 android:id="@+id/open_files_button"
                 style="@style/LauncherMenuButton.Universal"
                 android:layout_width="match_parent"
-                android:drawableStart="@drawable/ic_px_folder"
                 android:text="@string/mcl_button_open_directory"
 
                 app:layout_constraintTop_toBottomOf="@id/share_logs_button" />
