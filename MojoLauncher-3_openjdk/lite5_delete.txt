@@ -1,0 +1,8 @@
+app_mojo/src/main/res/drawable/ic_fabric.webp
+app_mojo/src/main/res/drawable/ic_forge.webp
+app_mojo/src/main/res/drawable/ic_mojo_full.webp
+app_mojo/src/main/res/drawable/ic_neoforge.webp
+app_mojo/src/main/res/drawable/ic_quilt.webp
+app_mojo/src/main/res/drawable/ic_setting_sign_in_background.webp
+app_mojo/src/main/res/font/minecraft_ten.ttf
+app_mojo/src/main/res/font/noto_sans_bold.ttf
