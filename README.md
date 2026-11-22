@@ -33,6 +33,7 @@
 * Renamed to **MojoSuperLite Launcher**.
 * Fixed a crash when opening the settings screen caused by an empty `ic_px_arrow_left` vector drawable.
 * Added an "All files access" permission prompt (`MANAGE_EXTERNAL_STORAGE`) on Android 11 and newer, shown at startup.
+* Added the **MobileGlues** renderer. It is detected automatically when `libmobileglues.so` is bundled in the app, or when the [MobileGlues plugin](https://github.com/MobileGL-Dev/MobileGlues-release/releases) app is installed. Its config is stored in `games/PojavLauncher/mobileglues/`.
 
 > The application ID (`git.artdeell.mjlaunch`) and internal package names are unchanged, so existing data and builds stay compatible.
 

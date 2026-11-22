@@ -9,6 +9,7 @@ import git.artdeell.mojo.game.renderer.def.Renderers;
 import git.artdeell.mojo.game.renderer.extra.GLESProvider;
 import git.artdeell.mojo.prefs.LauncherPreferences;
 import git.artdeell.mojo.utils.JREUtils;
+import git.artdeell.mojo.utils.plugins.LibraryPlugin;
 
 import java.io.File;
 import java.util.Map;
@@ -20,7 +21,7 @@ import git.artdeell.mojoexec.MojoExec;
  * Base GLES RenderSpec. Represents a desktop OpenGL wrapper running on-top of {@link GLESProvider}
  */
 public abstract class GLESRenderSpec implements RenderSpec {
-    private boolean nsBypass = false;
+    protected boolean nsBypass = false;
     protected abstract int glesVersion();
     public void setupEnvironment(Context context, Map<String, String> envMap) {
         GLESProvider provider = GLESProvider.getGlesProvider(context, LauncherPreferences.PREF_USE_ANGLE);
@@ -57,6 +58,63 @@ public abstract class GLESRenderSpec implements RenderSpec {
         }
         protected int glesVersion() {
             return 3;
+        }
+    }
+
+    /**
+     * MobileGlues (OpenGL 4.x on top of OpenGL ES 3). The library is taken from the launcher's native
+     * directory if bundled, otherwise from the installed MobileGlues plugin app.
+     */
+    public static class MobileGluesRenderSpec extends GLESRenderSpec {
+        private static final String LIB = "libmobileglues.so";
+        private LibraryPlugin plugin;
+
+        private boolean hasBundledLibrary() {
+            return new File(Tools.NATIVE_LIB_DIR, LIB).exists();
+        }
+        private LibraryPlugin discover(Context context) {
+            if(plugin == null) plugin = LibraryPlugin.discoverPlugin(context, LibraryPlugin.ID_MOBILEGLUES_PLUGIN);
+            return plugin;
+        }
+        public boolean compatibleDevice(Context context) {
+            if(JREUtils.getDetectedVersion() < 3) return false;
+            if(hasBundledLibrary()) return true;
+            LibraryPlugin p = discover(context);
+            return p != null && p.checkLibraries(LIB);
+        }
+        public String name() {
+            return "MobileGlues";
+        }
+        public int displayName() {
+            return R.string.mcl_setting_renderer_mobileglues;
+        }
+        public String tag() {
+            return Renderers.MOBILEGLUES_RENDERER;
+        }
+        public String library() {
+            return LIB;
+        }
+        public String librarySearchPath() {
+            if(hasBundledLibrary() || plugin == null) return null;
+            return plugin.getLibraryPath();
+        }
+        protected int glesVersion() {
+            return 3;
+        }
+        public void setupEnvironment(Context context, Map<String, String> envMap) {
+            discover(context);
+            super.setupEnvironment(context, envMap);
+            // MobileGlues keeps its config.json and logs here
+            File mgDir = new File(Tools.DIR_GAME_HOME, "mobileglues");
+            if(mgDir.isDirectory() || mgDir.mkdirs()) {
+                envMap.put("MG_DIR_PATH", mgDir.getAbsolutePath());
+            }
+        }
+        public boolean setupRenderer() {
+            if(!hasBundledLibrary() && plugin != null) {
+                return MojoExec.prepareEgl(plugin.resolveAbsolutePath(LIB), nsBypass, true, glesVersion());
+            }
+            return super.setupRenderer();
         }
     }
 
