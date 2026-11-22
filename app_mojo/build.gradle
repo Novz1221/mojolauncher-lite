@@ -56,6 +56,10 @@ android {
         abortOnError false
     }
 
+    androidResources {
+        localeFilters += ['en', 'in']
+    }
+
     signingConfigs {
         customDebug {
             storeFile file("debug.keystore")
@@ -84,6 +88,9 @@ android {
         versionCode getDateSeconds()
         versionName getVersionName()
         multiDexEnabled false //important
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
         resValue 'string', 'curseforge_api_key', getCFApiKey()
         resValue 'string', 'group_id', 'git.artdeell'
     }

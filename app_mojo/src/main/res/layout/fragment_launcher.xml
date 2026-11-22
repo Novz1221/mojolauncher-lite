@@ -20,40 +20,39 @@
 			android:orientation="vertical">
 			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/news_button"
+				android:visibility="gone"
 				style="@style/LauncherMenuButton.Universal"
 				android:layout_width="match_parent"
 				android:text="@string/mcl_tab_wiki" />
-			<View style="@style/ThickDivider" />
 			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/social_media_button"
+				android:visibility="gone"
 				style="@style/LauncherMenuButton.Universal"
 				android:layout_width="match_parent"
 				android:text="@string/mcl_button_social_media" />
-			<View style="@style/ThickDivider" />
 			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/custom_control_button"
 				style="@style/LauncherMenuButton.Universal"
 				android:layout_width="match_parent"
 				android:text="@string/mcl_option_customcontrol" />
-			<View style="@style/ThickDivider" />
 			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/install_jar_button"
+				android:visibility="gone"
 				style="@style/LauncherMenuButton.Universal"
 				android:layout_width="match_parent"
 				android:text="@string/main_install_jar_file" />
-			<View style="@style/ThickDivider" />
 			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/share_logs_button"
+				android:visibility="gone"
 				style="@style/LauncherMenuButton.Universal"
 				android:layout_width="match_parent"
 				android:text="@string/main_share_logs" />
-			<View style="@style/ThickDivider" />
 			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/open_files_button"
+				android:visibility="gone"
 				style="@style/LauncherMenuButton.Universal"
 				android:layout_width="match_parent"
 				android:text="@string/mcl_button_open_directory" />
-			<View style="@style/ThickDivider" />
 		</LinearLayout>
 	</ScrollView>
 

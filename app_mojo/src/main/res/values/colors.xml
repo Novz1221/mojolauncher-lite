@@ -7,13 +7,13 @@
     <color name="minebutton_secondary">#333333</color>
     <color name="background_app">#000000</color>
     <color name="divider">@color/background_overlay</color>
-    <color name="background_overlay">#404040</color>
+    <color name="background_overlay">#000000</color>
     <color name="background_status_bar">#000000</color>
-    <color name="background_bottom_bar">#1A1A1A</color>
+    <color name="background_bottom_bar">#000000</color>
     <color name="icon_outline_color">#FFFFFF</color>
 
     <color name="primary_text">#FFFFFF</color>
     <color name="secondary_text">#B2B2B2</color>
 
-    <color name="android2_orange">#E57F00</color>
+    <color name="android2_orange">#222222</color>
 </resources>

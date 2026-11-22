@@ -96,7 +96,10 @@ public class JavaRunner {
         String resolvFile;
         resolvFile = new File(Tools.DIR_DATA,"resolv.conf").getAbsolutePath();
 
+        userArguments.add(0, "-XX:TieredStopAtLevel=1");
+        userArguments.add(0, "-XX:-UsePerfData");
         userArguments.add(0, "-XX:+UseSerialGC");
+        userArguments.add(0, "-XX:+IgnoreUnrecognizedVMOptions");
         userArguments.add(0, "-Xms"+Math.min(128, LauncherPreferences.PREF_RAM_ALLOCATION)+"M");
         userArguments.add(0, "-Xmx"+LauncherPreferences.PREF_RAM_ALLOCATION+"M");
 
