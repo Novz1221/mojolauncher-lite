@@ -1,6 +1,7 @@
 package git.artdeell.mojo.game.renderer.impl;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 
 import git.artdeell.mojo.Tools;
@@ -104,11 +105,14 @@ public abstract class GLESRenderSpec implements RenderSpec {
         public void setupEnvironment(Context context, Map<String, String> envMap) {
             discover(context);
             super.setupEnvironment(context, envMap);
-            // MobileGlues keeps its config.json and logs here
-            File mgDir = new File(Tools.DIR_GAME_HOME, "mobileglues");
-            if(mgDir.isDirectory() || mgDir.mkdirs()) {
-                envMap.put("MG_DIR_PATH", mgDir.getAbsolutePath());
+            // Prefer the shared /sdcard/MG so the MobileGlues app can edit config.json.
+            // Fall back to the launcher's own folder if shared storage isn't writable.
+            File mgDir = new File(Environment.getExternalStorageDirectory(), "MG");
+            if(!((mgDir.isDirectory() || mgDir.mkdirs()) && mgDir.canWrite())) {
+                mgDir = new File(Tools.DIR_GAME_HOME, "mobileglues");
+                if(!mgDir.isDirectory() && !mgDir.mkdirs()) mgDir = null;
             }
+            if(mgDir != null) envMap.put("MG_DIR_PATH", mgDir.getAbsolutePath());
         }
         public boolean setupRenderer() {
             if(!hasBundledLibrary() && plugin != null) {
