@@ -65,6 +65,7 @@ public class LauncherPreferences {
     public static float PREF_DEADZONE_SCALE = 1f;
     public static boolean PREF_BIG_CORE_AFFINITY = false;
     public static boolean PREF_PERF_TWEAKS = true;
+    public static boolean PREF_PERF_HIGH_FPS = true;
     public static boolean PREF_ZINK_PREFER_SYSTEM_DRIVER = false;
     public static boolean PREF_VERIFY_MANIFEST = true;
     public static String PREF_DOWNLOAD_SOURCE = "default";
@@ -88,6 +89,8 @@ public class LauncherPreferences {
         boolean isDevicePowerful = isDevicePowerful(ctx);
 
         PREF_RENDERER = DEFAULT_PREF.getString("renderer", "opengles2");
+        PREF_PERF_TWEAKS = DEFAULT_PREF.getBoolean("perfTweaks", true);
+        PREF_PERF_HIGH_FPS = DEFAULT_PREF.getBoolean("perfHighFps", true);
         PREF_BUTTONSIZE = DEFAULT_PREF.getInt("buttonscale", 100);
         PREF_MOUSESCALE = DEFAULT_PREF.getInt("mousescale", 100)/100f;
         PREF_MOUSESPEED = ((float)DEFAULT_PREF.getInt("mousespeed",100))/100f;
@@ -99,7 +102,7 @@ public class LauncherPreferences {
         PREF_DISABLE_SWAP_HAND = DEFAULT_PREF.getBoolean("disableDoubleTap", false);
         PREF_RAM_ALLOCATION = DEFAULT_PREF.getInt("allocation", findBestRAMAllocation(ctx));
         PREF_CUSTOM_JAVA_ARGS = DEFAULT_PREF.getString("javaArgs", "");
-        PREF_SUSTAINED_PERFORMANCE = DEFAULT_PREF.getBoolean("sustainedPerformance", false);
+        PREF_SUSTAINED_PERFORMANCE = DEFAULT_PREF.getBoolean("sustainedPerformance", PREF_PERF_TWEAKS && !PREF_PERF_HIGH_FPS);
         PREF_VIRTUAL_MOUSE_START = DEFAULT_PREF.getBoolean("mouse_start", false);
         PREF_USE_ALTERNATE_SURFACE = DEFAULT_PREF.getBoolean("alternate_surface", true);
         PREF_JAVA_SANDBOX = DEFAULT_PREF.getBoolean("java_sandbox", true);
@@ -115,8 +118,6 @@ public class LauncherPreferences {
         PREF_BUTTON_ALL_CAPS = DEFAULT_PREF.getBoolean("buttonAllCaps", true);
         PREF_DUMP_SHADERS = DEFAULT_PREF.getBoolean("dump_shaders", false);
         PREF_DEADZONE_SCALE = ((float) DEFAULT_PREF.getInt("gamepad_deadzone_scale", 100))/100f;
-        PREF_PERF_TWEAKS = DEFAULT_PREF.getBoolean("perfTweaks", true);
-        // With the tweaks on, pin the render thread to the big cores on big.LITTLE devices unless the user chose otherwise
         PREF_BIG_CORE_AFFINITY = DEFAULT_PREF.getBoolean("bigCoreAffinity", PREF_PERF_TWEAKS && !hasAllCoreSameFreq());
         PREF_ZINK_PREFER_SYSTEM_DRIVER = DEFAULT_PREF.getBoolean("zinkPreferSystemDriver", !hasVulkanDrivers());
         PREF_DOWNLOAD_SOURCE = DEFAULT_PREF.getString("downloadSource", "default");

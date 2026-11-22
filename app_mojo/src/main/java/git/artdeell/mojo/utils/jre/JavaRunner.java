@@ -97,6 +97,7 @@ public class JavaRunner {
         String resolvFile;
         resolvFile = new File(Tools.DIR_DATA,"resolv.conf").getAbsolutePath();
 
+        PerfTweaks.addStableJvmArgs(userArguments);
         userArguments.add(0, "-XX:TieredStopAtLevel=1");
         userArguments.add(0, "-XX:-UsePerfData");
         userArguments.add(0, "-XX:+UseSerialGC");

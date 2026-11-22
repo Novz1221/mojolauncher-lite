@@ -248,7 +248,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
 
             setIntent(activityIntent);
 
-            setTitle("MojoLauncher (" + version + ")");
+            setTitle("MojoSuperLite Launcher (" + version + ")");
 
             // Menu
             gameActionArrayAdapter = new ArrayAdapter<>(this,
