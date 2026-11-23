@@ -45,7 +45,6 @@ public class LauncherPreferences {
     public static String PREF_DEFAULT_RUNTIME;
     public static boolean PREF_SUSTAINED_PERFORMANCE = false;
     public static boolean PREF_MORE_PERFORMANCE = true;
-    public static boolean PREF_MORE_PERFORMANCE = true;
     public static boolean PREF_VIRTUAL_MOUSE_START = false;
     public static boolean PREF_USE_ALTERNATE_SURFACE = true;
     public static boolean PREF_JAVA_SANDBOX = true;
