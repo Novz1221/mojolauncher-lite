@@ -577,4 +577,6 @@
     <string name="preference_perf_high_fps_description">No FPS cap, lower resolution and shorter render distance on PowerVR. Turn off for steadier but lower FPS.</string>
     <string name="preference_perf_fast_load_title">Fast load</string>
     <string name="preference_perf_fast_load_description">Skips bytecode verification when loading classes. Shorter loading, no effect on FPS. Turn off if a mod crashes with an unclear error.</string>
+    <string name="preference_more_performance_title">More Performance</string>
+    <string name="preference_more_performance_description">Asks Android to run the game on faster CPU cores and the highest screen refresh rate, without changing Minecraft settings. Uses more battery and may heat up your phone. Replaces sustained performance mode while enabled.</string>
 </resources>

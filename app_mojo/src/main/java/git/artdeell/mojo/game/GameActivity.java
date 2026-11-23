@@ -4,6 +4,7 @@ package git.artdeell.mojo.game;
 import static git.artdeell.mojo.Tools.dialogForceClose;
 import static git.artdeell.mojo.game.platform.Platform.PLATFORM;
 import static git.artdeell.mojo.prefs.LauncherPreferences.PREF_ENABLE_GYRO;
+import static git.artdeell.mojo.prefs.LauncherPreferences.PREF_MORE_PERFORMANCE;
 import static git.artdeell.mojo.prefs.LauncherPreferences.PREF_SUSTAINED_PERFORMANCE;
 import static git.artdeell.mojo.prefs.LauncherPreferences.PREF_USE_ALTERNATE_SURFACE;
 import static git.artdeell.mojo.prefs.LauncherPreferences.PREF_VIRTUAL_MOUSE_START;
@@ -85,6 +86,7 @@ import java.util.Objects;
 import git.artdeell.mojo.R;
 
 public class GameActivity extends BaseActivity implements ControlButtonMenuListener, EditorExitable, ServiceConnection {
+    private PerformanceBooster mPerformanceBooster;
     public static final String INTENT_LAUNCH_VERSION = "intent_version";
     public static final String INTENT_LAUNCH_CLASSPATH = "intent_classpath";
 
@@ -150,7 +152,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
 
         // Set the sustained performance mode for available APIs
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-            getWindow().setSustainedPerformanceMode(PREF_SUSTAINED_PERFORMANCE);
+            getWindow().setSustainedPerformanceMode(PREF_SUSTAINED_PERFORMANCE && !PREF_MORE_PERFORMANCE);
 
         // This is required on Android 10 for the insets listener
         // https://issuetracker.google.com/issues/266331465
@@ -333,6 +335,10 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
         ContextExecutor.setActivity(this);
         if(PREF_ENABLE_GYRO) mGyroControl.enable();
         PLATFORM.setHovered(true);
+        if(PREF_MORE_PERFORMANCE) {
+            if(mPerformanceBooster == null) mPerformanceBooster = new PerformanceBooster(this);
+            mPerformanceBooster.start();
+        }
     }
 
     @Override
@@ -346,6 +352,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
         if(mQuickSettingSideDialog != null) {
             mQuickSettingSideDialog.cancel();
         }
+        if(mPerformanceBooster != null) mPerformanceBooster.stop();
         PLATFORM.setHovered(false);
         super.onPause();
     }
