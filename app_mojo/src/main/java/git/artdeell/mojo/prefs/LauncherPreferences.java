@@ -91,8 +91,8 @@ public class LauncherPreferences {
         boolean isDevicePowerful = isDevicePowerful(ctx);
 
         PREF_RENDERER = DEFAULT_PREF.getString("renderer", "opengles2");
-        PREF_PERF_TWEAKS = DEFAULT_PREF.getBoolean("perfTweaks", true);
-        PREF_PERF_HIGH_FPS = DEFAULT_PREF.getBoolean("perfHighFps", true);
+        PREF_PERF_TWEAKS = false;
+        PREF_PERF_HIGH_FPS = false;
         PREF_PERF_FAST_LOAD = DEFAULT_PREF.getBoolean("perfFastLoad", true);
         PREF_BUTTONSIZE = DEFAULT_PREF.getInt("buttonscale", 100);
         PREF_MOUSESCALE = DEFAULT_PREF.getInt("mousescale", 100)/100f;
