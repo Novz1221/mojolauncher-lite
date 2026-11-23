@@ -60,6 +60,13 @@
             />
 
         <androidx.preference.SwitchPreferenceCompat
+            android:title="@string/preference_more_performance_title"
+            android:summary="@string/preference_more_performance_description"
+            android:key="morePerformance"
+            android:defaultValue="true"
+            />
+
+        <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="alternate_surface"
             android:summary="@string/mcl_setting_subtitle_use_surface_view"
