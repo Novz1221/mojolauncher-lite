@@ -65,8 +65,6 @@ public class LauncherPreferences {
     public static boolean PREF_DUMP_SHADERS = false;
     public static float PREF_DEADZONE_SCALE = 1f;
     public static boolean PREF_BIG_CORE_AFFINITY = false;
-    public static boolean PREF_PERF_TWEAKS = true;
-    public static boolean PREF_PERF_HIGH_FPS = true;
     public static boolean PREF_PERF_FAST_LOAD = true;
     public static boolean PREF_ZINK_PREFER_SYSTEM_DRIVER = false;
     public static boolean PREF_VERIFY_MANIFEST = true;
@@ -91,8 +89,6 @@ public class LauncherPreferences {
         boolean isDevicePowerful = isDevicePowerful(ctx);
 
         PREF_RENDERER = DEFAULT_PREF.getString("renderer", "opengles2");
-        PREF_PERF_TWEAKS = false;
-        PREF_PERF_HIGH_FPS = false;
         PREF_PERF_FAST_LOAD = DEFAULT_PREF.getBoolean("perfFastLoad", true);
         PREF_BUTTONSIZE = DEFAULT_PREF.getInt("buttonscale", 100);
         PREF_MOUSESCALE = DEFAULT_PREF.getInt("mousescale", 100)/100f;
@@ -105,7 +101,7 @@ public class LauncherPreferences {
         PREF_DISABLE_SWAP_HAND = DEFAULT_PREF.getBoolean("disableDoubleTap", false);
         PREF_RAM_ALLOCATION = DEFAULT_PREF.getInt("allocation", findBestRAMAllocation(ctx));
         PREF_CUSTOM_JAVA_ARGS = DEFAULT_PREF.getString("javaArgs", "");
-        PREF_SUSTAINED_PERFORMANCE = DEFAULT_PREF.getBoolean("sustainedPerformance", PREF_PERF_TWEAKS && !PREF_PERF_HIGH_FPS);
+        PREF_SUSTAINED_PERFORMANCE = DEFAULT_PREF.getBoolean("sustainedPerformance", false);
         PREF_MORE_PERFORMANCE = DEFAULT_PREF.getBoolean("morePerformance", true);
         PREF_VIRTUAL_MOUSE_START = DEFAULT_PREF.getBoolean("mouse_start", false);
         PREF_USE_ALTERNATE_SURFACE = DEFAULT_PREF.getBoolean("alternate_surface", true);
@@ -122,7 +118,7 @@ public class LauncherPreferences {
         PREF_BUTTON_ALL_CAPS = DEFAULT_PREF.getBoolean("buttonAllCaps", true);
         PREF_DUMP_SHADERS = DEFAULT_PREF.getBoolean("dump_shaders", false);
         PREF_DEADZONE_SCALE = ((float) DEFAULT_PREF.getInt("gamepad_deadzone_scale", 100))/100f;
-        PREF_BIG_CORE_AFFINITY = DEFAULT_PREF.getBoolean("bigCoreAffinity", PREF_PERF_TWEAKS && !hasAllCoreSameFreq());
+        PREF_BIG_CORE_AFFINITY = DEFAULT_PREF.getBoolean("bigCoreAffinity", false);
         PREF_ZINK_PREFER_SYSTEM_DRIVER = DEFAULT_PREF.getBoolean("zinkPreferSystemDriver", !hasVulkanDrivers());
         PREF_DOWNLOAD_SOURCE = DEFAULT_PREF.getString("downloadSource", "default");
         PREF_VERIFY_MANIFEST = DEFAULT_PREF.getBoolean("verifyManifest", true);
@@ -188,7 +184,7 @@ public class LauncherPreferences {
     private static int findBestResolution(Context context, boolean isDevicePowerful) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         int minSide = Math.min(metrics.widthPixels, metrics.heightPixels);
-        int targetSide = git.artdeell.mojo.utils.PerfTweaks.targetShortSide(GpuUtils.getGlInfo());
+        int targetSide = 540;
         if (minSide <= targetSide) return 100; // No need to scale down
 
         float ratio = (100f * targetSide / minSide);

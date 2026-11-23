@@ -37,7 +37,6 @@ public abstract class GLESRenderSpec implements RenderSpec {
         envMap.put("allow_glsl_extension_directive_midshader", "true");
         // Prevent OptiFine (and other error-reporting stuff in Minecraft) from balooning the log
         envMap.put("LIBGL_NOERROR", "1");
-        PerfTweaks.applyGlesEnv(envMap);
     }
     public boolean setupRenderer() {
         return MojoExec.prepareEgl(library(), nsBypass, true, glesVersion());

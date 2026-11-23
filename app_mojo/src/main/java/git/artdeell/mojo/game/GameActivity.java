@@ -135,7 +135,6 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
 
         AsyncAssetManager.extractDefaultSettings(this, instance.getGameDirectory());
         MCOptionUtils.load(instance.getGameDirectory().getAbsolutePath());
-        PerfTweaks.applyGameOptions(instance.getGameDirectory());
 
         Intent gameServiceIntent = new Intent(this, GameService.class);
         // Start the service a bit early

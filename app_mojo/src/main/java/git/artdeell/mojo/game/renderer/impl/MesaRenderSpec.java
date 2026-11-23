@@ -27,7 +27,6 @@ public class MesaRenderSpec implements RenderSpec {
     }
     public void setupEnvironment(Context context, Map<String, String> envMap) {
         envMap.put("MESA_GLSL_CACHE_DIR", Tools.DIR_CACHE.getAbsolutePath());
-        PerfTweaks.applyMesaEnv(envMap);
     }
     protected boolean hasMesa() {
         return SDK_INT >= 29 && new File(Tools.NATIVE_LIB_DIR, this.library()).exists();
